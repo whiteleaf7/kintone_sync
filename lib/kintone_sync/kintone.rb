@@ -166,7 +166,8 @@ module KintoneSync
       query = ''.dup
       cond.each do |k, v|
         query << ' and ' unless query == ''
-        type = properties[k.to_s]['type']
+        prop = properties[k.to_s]
+        type = prop && prop['type']
         is_container = container_type?(type)
         not_op = is_container ? 'not' : ?! if options[:not]
         query << if container_type?(type)
